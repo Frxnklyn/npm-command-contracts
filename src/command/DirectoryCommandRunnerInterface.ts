@@ -8,6 +8,6 @@ import type { CommandRunnerInterface } from "./CommandRunnerInterface.js";
  *
  * @author Frxnklyn
  */
-export interface DirectoryCommandRunnerInterface<TDirectory = unknown>
+export interface DirectoryCommandRunnerInterface
   extends CommandRunnerInterface,
-    DirectoryInterface<TDirectory> {}
+    DirectoryInterface {}
