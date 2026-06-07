@@ -1,3 +1,8 @@
+/**
+ * Beschreibt das strukturierte Ergebnis einer Command-Ausfuehrung.
+ *
+ * @author Frxnklyn
+ */
 export interface CommandResultInterface {
   command: string;
   args?: string[];
