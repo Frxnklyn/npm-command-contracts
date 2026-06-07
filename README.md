@@ -33,17 +33,28 @@ const result: CommandResultInterface = await runner.run({
 });
 ```
 
-## PathAwareCommandRunnerInterface
+## Runner-Arten
 
-Ein path-aware Runner kann ein Standard-CWD speichern. Ein direkt am Command gesetztes `cwd` hat weiterhin Vorrang.
+`CommandRunnerInterface` beschreibt einen Runner ohne gespeicherten Pfad. Das `cwd` kann bei Bedarf direkt am Command gesetzt werden.
+
+`PathAwareCommandRunnerInterface` beschreibt einen Runner mit gespeichertem Pfad. Dadurch kann `run(...)` ohne `cwd` aufgerufen werden. Ein direkt am Command gesetztes `cwd` hat weiterhin Vorrang.
 
 ```ts
 import type { PathAwareCommandRunnerInterface } from "@frxnklyn/command-contracts";
 
 declare const runner: PathAwareCommandRunnerInterface;
-runner.setCwd("C:/dev/my-repo");
+runner.setPath("C:/dev/my-repo");
 await runner.run({ command: "git", args: ["status"] });
-runner.clearCwd();
+```
+
+`DirectoryCommandRunnerInterface` ist die Directory-Variante des path-aware Runners. Sie speichert ein `DirectoryInterface` und liest dessen aktuellen Pfad bei jeder Ausfuehrung neu.
+
+```ts
+import type { DirectoryCommandRunnerInterface } from "@frxnklyn/command-contracts";
+
+declare const runner: DirectoryCommandRunnerInterface;
+runner.getDirectory().moveTo("packages/example");
+await runner.run({ command: "git", args: ["status"] });
 ```
 
 ## Build

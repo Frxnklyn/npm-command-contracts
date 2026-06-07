@@ -32,7 +32,11 @@
     "type": "git",
     "url": "git+https://github.com/Frxnklyn/npm-command-contracts.git"
   },
+  "peerDependencies": {
+    "@frxnklyn/directory-contracts": "github:Frxnklyn/npm-directory-contracts"
+  },
   "devDependencies": {
+    "@frxnklyn/directory-contracts": "file:../npm-directory-contracts",
     "typescript": "^5.9.3"
   }
 }
