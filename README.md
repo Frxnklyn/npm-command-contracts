@@ -47,13 +47,13 @@ runner.setPath("C:/dev/my-repo");
 await runner.run({ command: "git", args: ["status"] });
 ```
 
-`DirectoryCommandRunnerInterface` ist die Directory-Variante des path-aware Runners. Sie speichert ein `DirectoryInterface` und liest dessen aktuellen Pfad bei jeder Ausfuehrung neu.
+`DirectoryCommandRunnerInterface` erweitert sowohl `CommandRunnerInterface` als auch `DirectoryInterface`. Eine Implementierung ist damit selbst ein Directory und verwendet ihren eigenen aktuellen Pfad bei jeder Ausfuehrung.
 
 ```ts
 import type { DirectoryCommandRunnerInterface } from "@frxnklyn/command-contracts";
 
 declare const runner: DirectoryCommandRunnerInterface;
-runner.getDirectory().moveTo("packages/example");
+runner.moveTo("packages/example");
 await runner.run({ command: "git", args: ["status"] });
 ```
 

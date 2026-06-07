@@ -1,14 +1,13 @@
 import type { DirectoryInterface } from "@frxnklyn/directory-contracts";
-import type { PathAwareCommandRunnerInterface } from "./PathAwareCommandRunnerInterface.js";
+import type { CommandRunnerInterface } from "./CommandRunnerInterface.js";
 
 /**
- * Definiert einen Command-Runner, der ein DirectoryInterface speichert und dessen
- * aktuellen Pfad bei jeder Ausfuehrung als Standard-CWD verwendet.
+ * Kombiniert einen path-aware Command-Runner mit allen Directory-Funktionen.
+ * Implementierungen verwalten ihr Directory selbst und verwenden dessen
+ * aktuellen Pfad bei jeder Ausfuehrung als Standard-CWD.
  *
  * @author Frxnklyn
  */
-export interface DirectoryCommandRunnerInterface
-  extends PathAwareCommandRunnerInterface {
-  setDirectory(directory: DirectoryInterface): this;
-  getDirectory(): DirectoryInterface;
-}
+export interface DirectoryCommandRunnerInterface<TDirectory = unknown>
+  extends CommandRunnerInterface,
+    DirectoryInterface<TDirectory> {}
